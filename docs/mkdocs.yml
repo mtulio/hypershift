@@ -135,6 +135,8 @@ nav:
     - how-to/powervs/create-cluster-powervs.md
     - how-to/powervs/create-infra-separately.md
     - how-to/powervs/prerequisites-and-env-guide.md
+  - 'External':
+    - how-to/external/create-cluster.md
 - 'Self-Managed Laboratories':
   - 'MultiCluster Engine and Agent provider':
     - labs/index.md

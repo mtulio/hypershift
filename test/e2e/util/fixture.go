@@ -133,6 +133,8 @@ func createCluster(ctx context.Context, hc *hyperv1.HostedCluster, opts *Platfor
 		return renderCreate(ctx, &opts.RawCreateOptions, &opts.AWSPlatform, manifestsFile, renderLogFile, createLogFile)
 	case hyperv1.NonePlatform:
 		return renderCreate(ctx, &opts.RawCreateOptions, &opts.NonePlatform, manifestsFile, renderLogFile, createLogFile)
+	case hyperv1.ExternalPlatform:
+		return renderCreate(ctx, &opts.RawCreateOptions, &opts.NonePlatform, manifestsFile, renderLogFile, createLogFile)
 	case hyperv1.KubevirtPlatform:
 		return renderCreate(ctx, &opts.RawCreateOptions, &opts.KubevirtPlatform, manifestsFile, renderLogFile, createLogFile)
 	case hyperv1.AzurePlatform:
@@ -245,7 +247,7 @@ func destroyCluster(ctx context.Context, t *testing.T, hc *hyperv1.HostedCluster
 			PostDeleteAction: validateAWSGuestResourcesDeletedFunc(ctx, t, hc.Spec.InfraID, createOpts.AWSPlatform.Credentials.AWSCredentialsFile, createOpts.AWSPlatform.Region),
 		}
 		return aws.DestroyCluster(ctx, opts)
-	case hyperv1.NonePlatform, hyperv1.KubevirtPlatform:
+	case hyperv1.NonePlatform, hyperv1.KubevirtPlatform, hyperv1.ExternalPlatform:
 		return none.DestroyCluster(ctx, opts)
 	case hyperv1.AzurePlatform:
 		opts.AzurePlatform = core.AzurePlatformDestroyOptions{

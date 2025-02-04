@@ -70,6 +70,9 @@ func (m *configMetrics) Collect(ch chan<- prometheus.Metric) {
 			case status.Type == configv1.NonePlatformType:
 				g = m.cloudProvider.WithLabelValues(string(status.Type), "")
 				value = 0
+			case status.Type == configv1.ExternalPlatformType:
+				g = m.cloudProvider.WithLabelValues(string(status.Type), "")
+				value = 0
 			case status.AWS != nil:
 				g = m.cloudProvider.WithLabelValues(string(status.Type), status.AWS.Region)
 			case status.GCP != nil:

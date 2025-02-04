@@ -1018,6 +1018,9 @@ const (
 
 	// OpenStackPlatform represents OpenStack infrastructure.
 	OpenStackPlatform PlatformType = "OpenStack"
+
+	// ExternalPlatform represents user supplied (e.g. bare metal) infrastructure.
+	ExternalPlatform PlatformType = "External"
 )
 
 // List all PlatformType instances
@@ -1025,6 +1028,7 @@ func PlatformTypes() []PlatformType {
 	return []PlatformType{
 		AWSPlatform,
 		NonePlatform,
+		ExternalPlatform,
 		IBMCloudPlatform,
 		AgentPlatform,
 		KubevirtPlatform,

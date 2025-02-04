@@ -34,6 +34,13 @@ func ReconcileDefaultIngressController(ingressController *operatorv1.IngressCont
 		ingressController.Spec.DefaultCertificate = &corev1.LocalObjectReference{
 			Name: manifests.IngressDefaultIngressControllerCert().Name,
 		}
+	case hyperv1.ExternalPlatform:
+		ingressController.Spec.EndpointPublishingStrategy = &operatorv1.EndpointPublishingStrategy{
+			Type: operatorv1.HostNetworkStrategyType,
+		}
+		ingressController.Spec.DefaultCertificate = &corev1.LocalObjectReference{
+			Name: manifests.IngressDefaultIngressControllerCert().Name,
+		}
 	case hyperv1.KubevirtPlatform:
 		ingressController.Spec.EndpointPublishingStrategy = &operatorv1.EndpointPublishingStrategy{
 			Type: operatorv1.NodePortServiceStrategyType,

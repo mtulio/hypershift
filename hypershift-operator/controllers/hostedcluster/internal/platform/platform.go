@@ -106,6 +106,8 @@ func GetPlatform(ctx context.Context, hcluster *hyperv1.HostedCluster, releasePr
 		platform = &ibmcloud.IBMCloud{}
 	case hyperv1.NonePlatform:
 		platform = &none.None{}
+	case hyperv1.ExternalPlatform:
+		platform = &none.None{}
 	case hyperv1.AgentPlatform:
 		platform = &agent.Agent{}
 	case hyperv1.KubevirtPlatform:
